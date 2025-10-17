@@ -16,16 +16,16 @@ const personSchema = new Schema({
   favoriteFoods: [String]
 });
 
-Person = mongoose.model("Person", personSchema);
+let Person = mongoose.model("Person", personSchema);
 
 const createAndSavePerson = (done) => {
-  const AndrePires = new Person({
+  const person = new Person({
     name: "Andre Pires", 
     age: 50, 
     favoriteFoods: ["churrasco", "alcachofra", "pao de cebola"]
   });
 
-  AndrePires.save((err, data) => {
+  person.save((err, data) => {
     if (err) return done(err);
     return done(null, data);
   });
@@ -74,6 +74,7 @@ const queryChain = (done) => {
 
   done(null /*, data*/);
 };
+
 
 /** **Well Done !!**
 /* You completed these challenges, let's go celebrate !
