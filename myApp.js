@@ -1,7 +1,7 @@
 require('dotenv').config();
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGO_URI);
 
 // Para usar com ultima versão do mongoose.
 // mongoose.connect(process.env.MONGO_URI)
@@ -19,11 +19,15 @@ const personSchema = new Schema({
 const Person = mongoose.model("Person", personSchema);
 
 const createAndSavePerson = (done) => {
-  let AndrePires = new Person({name: "Andre Pires", age: 50, favoriteFoods: ["churrasco", "alcachofra", "pao de cebola"]});
+  let AndrePires = new Person({
+    name: "Andre Pires", 
+    age: 50, 
+    favoriteFoods: ["churrasco", "alcachofra", "pao de cebola"]
+  });
 
   AndrePires.save((err, data) => {
-    if (err) return console.error(err);
-    done(null, data);
+    if (err) return done(err);
+    return done(null, data);
   });
 };
 
