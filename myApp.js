@@ -1,17 +1,14 @@
 require('dotenv').config();
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGO_URI);
-
-// Para usar com ultima versão do mongoose.
-// mongoose.connect(process.env.MONGO_URI)
-//   .then(() => console.log("✅ Conectado ao MongoDB com sucesso"))
-//   .catch(err => console.error("❌ Erro na conexão:", err));
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ Conectado ao MongoDB com sucesso"))
+  .catch(err => console.error("❌ Erro na conexão:", err));
 
 const Schema = mongoose.Schema;
 
 const personSchema = new Schema({
-  name: String, 
+  name: {type:String, required: true}, 
   age: Number,
   favoriteFoods: [String]
 });
