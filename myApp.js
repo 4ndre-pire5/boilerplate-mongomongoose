@@ -11,15 +11,15 @@ mongoose.connect(process.env.MONGO_URI);
 const Schema = mongoose.Schema;
 
 const personSchema = new Schema({
-  name: {type: String, required: true},
+  name: String, 
   age: Number,
   favoriteFoods: [String]
 });
 
-const Person = mongoose.model("Person", personSchema);
+Person = mongoose.model("Person", personSchema);
 
 const createAndSavePerson = (done) => {
-  let AndrePires = new Person({
+  const AndrePires = new Person({
     name: "Andre Pires", 
     age: 50, 
     favoriteFoods: ["churrasco", "alcachofra", "pao de cebola"]
